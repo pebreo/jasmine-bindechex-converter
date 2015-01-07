@@ -17,4 +17,10 @@ To install this project just clone this repo.
 
 Open the `app.html` in your browser and enter binary, hex, or decimal values. Click the convert button and the approriate conversion will be made.
 
+## To-do
+- Number validation e.g. decimals in binary field
+- Prettify binary and hex numbers by adding spaces
+- Fix home button placement
+
+
 [demolink]: http://pauleb.com/bindechex "BinDecHex Converter"
