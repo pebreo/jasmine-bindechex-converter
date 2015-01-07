@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.compat.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js" ></script>
+  <script src="js/app.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="//pauleb.com">Home</a></li>
+        
+          </ul>
+        </nav>
+        <h3 class="text-muted">Binary-Decimal-Hex Converter</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h3>Decimal</h3>
+        <div class="input-group input-group-lg">
+  <span class="input-group-addon" ></span>
+  <input id="decvalue" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+</div>
+ <h3>Binary</h3>
+        <div class="input-group input-group-lg">
+  <span class="input-group-addon"></span>
+  <input  id="binvalue" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+</div>
+ <h3>Hex</h3>
+        <div class="input-group input-group-lg">
+  <span class="input-group-addon" ></span>
+  <input id="hexvalue" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon1">
+</div>
+<p></p>
+<p><a id="calcButton" class="btn btn-lg btn-success" href="#" role="button">Convert</a></p>
+
+      <footer class="footer">
+        <p></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+
+    <script>
+$(function() {
+         
+          function getval(id_name) {
+         var v = document.getElementById(id_name).value;
+         alert('the value:' + v);
+       }
+      function dec2others(id_name) {
+         calc = new Funcs();
+         var v = document.getElementById(id_name).value;
+         var ans = calc.dec2hex(v);
+         document.getElementById("hexvalue").value = ans;
+         
+         var ans = calc.dec2bin(v);
+         document.getElementById("binvalue").value = ans;
+         //alert('the value:' + ans);
+         
+       }
+      function hex2others(id_name) {
+         calc = new Funcs();
+         var v = document.getElementById(id_name).value;
+         var ans = calc.hex2dec(v);
+         document.getElementById("decvalue").value = ans;
+         
+         var ans = calc.hex2bin(v);
+         document.getElementById("binvalue").value = ans;
+         //alert('the value:' + ans);
+         
+       }
+       function bin2others(id_name) {
+         calc = new Funcs();
+         var v = document.getElementById(id_name).value;
+         var ans = calc.bin2dec(v);
+         document.getElementById("decvalue").value = ans;
+         
+         var ans = calc.bin2hex(v);
+         document.getElementById("hexvalue").value = ans;
+         //alert('the value:' + ans);
+         
+       }
+         
+        $('#decvalue').click(function() {
+          
+          $('#hexvalue').val('');
+          $('#binvalue').val('');
+        });
+        $('#hexvalue').click(function() {
+          $('#decvalue').val('');
+          $('#binvalue').val('');
+        });
+        $('#binvalue').click(function() {
+          $('#decvalue').val('');
+          $('#hexvalue').val('');
+        });
+        
+        $('#calcButton').click(function() {
+          
+          $(":input[value!='']").each(function(){
+            console.log("value: " + this.value);
+            console.log("id: " + this.id);
+            switch(this.id) {
+              case 'decvalue':
+                dec2others(this.id);
+                break;
+              case 'binvalue':
+                bin2others(this.id);
+                break;
+              case 'hexvalue':
+                this.value = this.value.toString().toUpperCase();
+                hex2others(this.id);
+                break;
+              default:
+              console.log('No value to convert');
+              
+            }
+          });
+          
+        });
+       });
+      
+    </script>
+  </body>
+</html>
